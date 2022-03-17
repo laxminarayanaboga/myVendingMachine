@@ -6,7 +6,7 @@ Scenario Outline:
 	Vending Machine should accept valid coins and deliver the user selected product and return remaining change if any
 	Given I approached the vending machine 
 	When I add <coins> into vendingn machine 
-	And selected <product> 
+	And selected <product> product
 	Then the product should be delivered 
 	And return remaining <change> if any 
 	Examples: 
@@ -24,7 +24,7 @@ Scenario Outline:
 	Vending Machine should not deliver the product if the input money is less than the product price 
 	Given  I approached the vending machine 
 	When  I add invalid <coins> into vendingn machine 
-	And selected <product> 
+	And selected <product> product
 	Then the product should not be delivered 
 	And  machine should throw the coins out 
 	And  display the error message <error> 
@@ -37,7 +37,7 @@ Scenario Outline:
 Scenario Outline: Vending Machine should not accept invalid coins 
 	Given  I approached the vending machine 
 	When  I add invalid <coin> into vendingn machine 
-	Then  machine should throw the coin out 
+	Then  machine should throw the coins out 
 	And  display the error message <error> 
 	Examples: 
 		|coin|error|
@@ -50,7 +50,7 @@ Scenario Outline:
 	Vending Machine should allow user to take refund by cancelling the request. 
 	Given I approached the vending machine 
 	When I add <coins> into vendingn machine 
-	And press cancel the operation 
+	And press the cancel button
 	Then machine should return the <money> 
 	Examples: 
 		|coins|money|
