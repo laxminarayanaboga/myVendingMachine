@@ -1,31 +1,35 @@
 package stepDefinitions;
 
+import org.junit.Assert;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import vendingMachine.VendingMachine;
 
 public class Steps {
+
 	@Given("^I approached the vending machine$")
 	public void i_approached_the_vending_machine() {
-		System.out.println("TODO: implement");
+		VendingMachine.initiateInventory();
 	}
 
 	@When("^I add ([^\"]*) into vendingn machine$")
-	public void i_add_into_vendingn_machine(String coins) {
-		// Write code here that turns the phrase above into concrete actions
-		System.out.println("TODO: implement" + coins);
+	public void i_add_into_vendingn_machine(String coinsString) {
+		String[] coins = coinsString.split(" and ");
+		for (String coin : coins) {
+			VendingMachine.addCoin(coin);
+		}
 	}
 
 	@When("^selected ([^\"]*) product$")
-	public void selected_coke(String product) {
-		// Write code here that turns the phrase above into concrete actions
-		System.out.println("TODO: implement" + product);
+	public void selected_product(String product) {
+		VendingMachine.selectProduct(product);
 	}
 
-	@Then("^the product should be delivered$")
-	public void the_product_should_be_delivered() {
-		// Write code here that turns the phrase above into concrete actions
-		System.out.println("TODO: implement");
+	@Then("^the product ([^\"]*) should be delivered$")
+	public void the_product_should_be_delivered(String product) {
+		Assert.assertEquals(product, VendingMachine.productReturned);
 	}
 
 	@Then("^return remaining ([^\"]*) if any$")
